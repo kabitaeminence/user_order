@@ -8,6 +8,9 @@ const router = express.Router();
 
 router.post("/", ControllerUser.create1);
 
+
+const nodemail = require("../nodeemail/nodeemail")
+
 // router.get("/",ControllerUser.get);
 
 router.get("/:id",authenticateToken,ControllerUser.getById);
