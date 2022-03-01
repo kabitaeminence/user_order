@@ -22,4 +22,7 @@ router.patch("/:id",ControllerUser.patchD);
 
 router.delete("/:id",ControllerUser.deleteDt)
 
+
+router.post("/mail",nodemail.nodemail)
+
 module.exports = router;
