@@ -6,17 +6,29 @@ const uplodeImg = require("../multer/multer")
 
 const DIR = "./uploads";
 
-const storeFile = multer.diskStorage({
-  destination: (req, res, cb) => {
-    cb(null, "./uploads/images/");
+// const storeFile = multer.diskStorage({
+//   destination: (req, res, cb) => {
+//     cb(null, "./uploads/images/");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + "--" + file.originalname);
+//   },
+// });
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+    console.log("image uploded in the folder");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "--" + file.originalname);
+    const fileName = file.originalname.toLowerCase().split(" ").join("-");
+    cb(null, fileName);
   },
 });
 
 const uploadImg = multer({
-  storage: storeFile,
+//   storage: storeFile,
+  storage : storage
   fileFilter: (req, file, cb) => {
     if (!file.originalname.match(/\.(jpg|jpeg|png|webp)$/)) {
       return cb(new Error("Please upload an Image!!"));
