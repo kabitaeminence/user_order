@@ -14,6 +14,8 @@ const create = async (req, res) => {
     res.send(obj)
 }
 
+// get data by id ****************************************************************
+  
 const get = async (req, res) => {
     try {
         const users = await UserOrder.find().populate("userId").populate("addressId");
@@ -22,6 +24,25 @@ const get = async (req, res) => {
         console.log(error)
     }
 }
+
+
+// ***********sorting Ascending or Decending Order by************************************************
+// const get=async(req,res)=>{
+
+//     try{
+//         // const greaterthan=await UserOrder.find({ OrderPrice : { $gt :  2000}})
+//         const lessthan=await UserOrder.find({ OrderQuentity : { $lt :  2 }})
+
+//         // res.send(greaterthan)
+//         res.send(lessthan)
+//     }catch(err){
+//         res.send("Not Found")
+//     }
+// }
+
+
+
+
 
 const patchOrder = async (req, res) => {
     try {
