@@ -82,6 +82,85 @@ const get = async (req, res) => {
     }
 }
 
+
+// *****************  by usin in   $in operator**************
+
+// const get = async(req,res)=>{
+//   try{
+//       const check_exist = await userData.find({Name:  {$in:["aman"]}})
+     
+//       res.send(check_exist)
+//       console.log(check_exist)
+//   }catch(err){
+//       res.send(err)
+//   }
+// }
+
+// how to use aggregation and lookup *************************************************************
+
+// const get = async(req,res)=>{
+//   try{
+//     const data = await userData.aggregate([
+//       {
+//         $lookup: {
+//           from: "userorders",
+//           let: { userId: "$_id" },
+//           pipeline: [
+//             {
+//               $match: {
+//                 $expr: {
+//                   $and: [{ $eq: ["$userId", "$$userId"] }],
+//                 },
+//               },
+//             },
+//           ],
+//           as: "userorders",
+//         },
+//       },
+//       {
+//         $lookup: {
+//           from: "useraddressschemas",
+//           let: { userId: "$_id" },
+//           pipeline: [
+//             {
+//               $match: {
+//                 $expr: {
+//                   $and: [{ $eq: ["$userId", "$$userId"] }],
+//                 },
+//               },
+//             },
+//           ],
+//           as: "useraddress",
+//         },
+//       },
+//     ]);
+//     res.send(data);
+//   }catch(err){
+//       res.send(err)
+//   }
+// }
+
+
+// // get all data -------------------------------------------------------
+
+// const get = async (req, res) => {
+//   let page = 1;
+//   let limit= 10;
+//   try {
+//     const user = await userData.find()
+//     // for skip and get id use below line-------------------------------pagination
+//     // .skip(3)
+//     // .skip((page-1)*limit)
+//     // .select("_id").limit(10)
+//     // .countDocuments()
+//     res.send(user)
+//     // console.log(user)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
+// // by id -----
 // get data by id-------------------------
 const getById = async(req,res)=>{
     try{
