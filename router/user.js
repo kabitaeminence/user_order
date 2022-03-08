@@ -14,9 +14,11 @@ router.post("/", ControllerUser.create1);
 
 // router.get("/",ControllerUser.get);
 
-router.get("/:id",authenticateToken,ControllerUser.getById);
+router.get("/:id",authenticateToken,ControllerUser.getById); // for authenticateToken----------------------------------
 
-router.get("/",authenticateToken,ControllerUser.get);
+router.get("/",authenticateToken,ControllerUser.get); // for authenticateToken-------------------------
+
+router.get("/", ControllerUser.get);// get by usin in oprater--------------------------------------
 
 router.patch("/:id",ControllerUser.patchD);
 
