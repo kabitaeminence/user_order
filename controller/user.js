@@ -141,6 +141,25 @@ const get_mach_data = async(req,res)=>{
 // }
 
 
+// search data by name*************************
+
+const search = async (req, res) => {
+  //onst { page } = req.params;
+  const { findUserName } = req.params;
+  //const page=req.params.page
+  //const numbers = await users.count();
+  try {
+      const data = await userData.find({
+          $or: [{ Name: { $regex: String(findUserName), $options: "i" } }],
+      });
+      console.log(data);
+      res.send(data);
+  } catch (error) {
+      console.log(error);
+  }
+};
+
+
 // // get all data -------------------------------------------------------
 
 const get = async (req, res) => {
@@ -197,5 +216,5 @@ const deleteDt = async (req, res) => {
         res.status(500).send(err)
     }
 }
-module.exports = { signup, get, patchD, deleteDt, login ,getById , get_mach_data}
+module.exports = { signup, get, patchD, deleteDt, login ,getById , get_mach_data , search}
 
