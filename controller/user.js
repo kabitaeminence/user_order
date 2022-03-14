@@ -72,7 +72,7 @@ const login = async (req, res) => {
 };
 
 
-
+// get all data *************************************
 const get = async (req, res) => {
     try {
         const user = await userData.find()
@@ -143,22 +143,22 @@ const get_mach_data = async(req,res)=>{
 
 // // get all data -------------------------------------------------------
 
-// const get = async (req, res) => {
-//   let page = 1;
-//   let limit= 10;
-//   try {
-//     const user = await userData.find()
-//     // for skip and get id use below line-------------------------------pagination
-//     // .skip(3)
-//     // .skip((page-1)*limit)
-//     // .select("_id").limit(10)
-//     // .countDocuments()
-//     res.send(user)
-//     // console.log(user)
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+const get = async (req, res) => {
+  let page = 1;
+  let limit= 10;
+  try {
+    const user = await userData.find()
+    // for skip and get id use below line-------------------------------pagination
+    // .skip(3)
+    // .skip((page-1)*limit)
+    // .select("_id").limit(10)
+    // .countDocuments()
+    res.send(user)
+    // console.log(user)
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 // // by id -----
 // get data by id-------------------------
@@ -197,5 +197,5 @@ const deleteDt = async (req, res) => {
         res.status(500).send(err)
     }
 }
-module.exports = { create1, get ,patchD ,deleteDt, get_mach_data}
+module.exports = { signup, get, patchD, deleteDt, login ,getById , get_mach_data}
 
