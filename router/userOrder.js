@@ -6,10 +6,16 @@ const router = express.Router();
 
 router.post("/", controllerOrder.create);
 
-router.get("/:id",controllerOrder.get);
+router.post("/filter", controllerOrder.filterdata);
 
-router.patch("/:id",controllerOrder.patchOrder);
+router.get("/search/:finnOrderName", controllerOrder.search);
 
-router.delete("/:id",controllerOrder.deleteD)
+router.get("/:id", controllerOrder.getById);
+
+router.get("/", controllerOrder.get);
+
+router.patch("/:id", controllerOrder.patchOrder);
+
+router.delete("/:id", controllerOrder.deleteD)
 
 module.exports = router;
