@@ -14,6 +14,8 @@ router.post("/", ControllerUser.create1);
 
 // router.get("/",ControllerUser.get);
 
+router.get("/search/:findUserName", ControllerUser.search);// search data by order name
+
 router.get("/:id",authenticateToken,ControllerUser.getById); // for authenticateToken----------------------------------
 
 router.get("/",authenticateToken,ControllerUser.get); // for authenticateToken-------------------------
