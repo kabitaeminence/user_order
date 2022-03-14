@@ -85,16 +85,16 @@ const get = async (req, res) => {
 
 // *****************  by usin in   $in operator**************
 
-// const get = async(req,res)=>{
-//   try{
-//       const check_exist = await userData.find({Name:  {$in:["aman"]}})
+const get_mach_data = async(req,res)=>{
+  try{
+      const check_exist = await userData.find({Name:  {$in:["aman"]}})
      
-//       res.send(check_exist)
-//       console.log(check_exist)
-//   }catch(err){
-//       res.send(err)
-//   }
-// }
+      res.send(check_exist)
+      console.log(check_exist)
+  }catch(err){
+      res.send(err)
+  }
+}
 
 // how to use aggregation and lookup *************************************************************
 
@@ -197,5 +197,5 @@ const deleteDt = async (req, res) => {
         res.status(500).send(err)
     }
 }
-module.exports = { create1, get ,patchD ,deleteDt}
+module.exports = { create1, get ,patchD ,deleteDt, get_mach_data}
 
