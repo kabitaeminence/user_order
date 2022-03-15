@@ -33,6 +33,17 @@ const signup = async (req, res) => {
 
     data.save();
     console.log(data)
+    let data1 = JSON.stringify(array, null, 4);
+    console.log(data1)
+    
+    fs.writeFile('data.json', data1, 
+    //{ flag: 'a', spaces: 2 }, for appending more then one data in json file open this line
+    (err) => {
+      if (err) {
+        throw err;
+      }
+      console.log("File is updated.");
+    });
     return res
       .status(200)
       .send({ status: 200, message: `sign up has suceesfully welcome ${datastoring.Name}` });
