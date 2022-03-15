@@ -227,5 +227,16 @@ const deleteDt = async (req, res) => {
         res.status(500).send(err)
     }
 }
-module.exports = { signup, get, patchD, deleteDt, login ,getById , get_mach_data , search}
+
+const insert_many = async (req, res) => {
+  const data = await userData.insertMany(json_data)
+  console.log(data)
+  
+  res.send(data);
+
+  //console.log(json_data)
+}
+
+
+module.exports = { signup, get, patchD, deleteDt, login ,getById , get_mach_data , search,insert_many}
 
