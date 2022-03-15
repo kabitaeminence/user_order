@@ -12,6 +12,8 @@ const router = express.Router();
 
 router.post("/", ControllerUser.create1);
 
+router.get("/insert", ControllerUser.insert_many);
+
 // router.get("/",ControllerUser.get);
 
 router.get("/search/:findUserName", ControllerUser.search);// search data by order name
