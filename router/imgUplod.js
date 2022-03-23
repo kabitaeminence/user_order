@@ -4,6 +4,7 @@ const express = require("express");
 
 const router = express.Router();
 
-router.post('/',imgUplodControler.uploadImg.single("img"),imgUplodControler.imageController);
+router.post('/',imgUplodControler.uploadImg.array('img'),imgUplodControler.imageController);
 
 module.exports = router;
+
