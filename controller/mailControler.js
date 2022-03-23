@@ -1,19 +1,28 @@
 const express = require('express')
 const app = express()
-const multer  = require('multer')
+const multer = require('multer')
 
-const uplodeImg = require("../multer/multer")
+const image = require("../model/uplodeImage")
+
+const update = async (req,res) =>{
+    try {
+        const data = req.files.map(async item =>{
+            console.log(item.path);
+            
+            const result = await image.findOneAndUpdate({ image: item.path },{image:item.path,...req.body},{upsert:true,new:true});
+            console.log(result);
+          
+        })
+        res.send({status:200,message:"image data is saved",data})
+        
+    } catch (error) {
+        res.send(error)
+        
+    }
+ 
+}
 
 const DIR = "./uploads";
-
-// const storeFile = multer.diskStorage({
-//   destination: (req, res, cb) => {
-//     cb(null, "./uploads/images/");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + "--" + file.originalname);
-//   },
-// });
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -26,26 +35,32 @@ const storage = multer.diskStorage({
   },
 });
 
-const uploadImg = multer({
-//   storage: storeFile,
-  storage : storage
+const uploadImg =  multer({
+  storage: storage,
   fileFilter: (req, file, cb) => {
     if (!file.originalname.match(/\.(jpg|jpeg|png|webp)$/)) {
       return cb(new Error("Please upload an Image!!"));
     }
     cb(undefined, true);
+    console.log(req.file)
   },
 });
 
-const imageController=(req,res)=>{
-  console.log(req.body)
+const imageController = (req, res) => {
+   
   try {
-    return res.send({message:"Hello"})
+   console.log(req.file)
+
+   console.log(req.body)
+    update(req,res)
   } catch (error) {
     console.log(error)
   }
 }
 
-  module.exports={uploadImg,imageController}
-  
- 
+module.exports = { uploadImg, imageController }
+
+
+
+
+
